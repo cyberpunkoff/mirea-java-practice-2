@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,16 +19,12 @@ public class SynchronizedListTest {
         }
 
         Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < 5000; i++) {
-                list.add(i);
-            }
+            IntStream.range(0, 5000).forEach(list::add);
             latch.countDown();
         });
 
         Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < 5000; i++) {
-                list.removeFirst();
-            }
+            IntStream.range(0, 5000).forEach((a) -> list.removeFirst());
             latch.countDown();
         });
 
@@ -39,4 +36,3 @@ public class SynchronizedListTest {
         assertThat(list.size()).isEqualTo(10000);
     }
 }
-

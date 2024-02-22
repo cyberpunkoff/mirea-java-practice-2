@@ -14,21 +14,13 @@ public class SynchronizedSetTest {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         Set<Integer> set = new SynchronizedSet<>();
 
-        IntStream.range(0, 500).forEach(set::add);
-
         Thread first = new Thread(() -> {
-//            IntStream.range(500, 6000).forEach(set::add);
-            for (int i = 500; i < 600; i++) {
-                set.add(i);
-            }
+            IntStream.range(0, 10_000).forEach(set::add);
             countDownLatch.countDown();
         });
 
         Thread second = new Thread(() -> {
-//            IntStream.range(500, 6000).forEach(set::remove);
-            for (int i = 500; i < 600; i++) {
-                set.remove(i);
-            }
+            IntStream.range(0, 10_000).forEach(set::add);
             countDownLatch.countDown();
         });
 
@@ -37,6 +29,6 @@ public class SynchronizedSetTest {
 
         countDownLatch.await();
 
-        assertThat(set.size()).isEqualTo(500);
+        assertThat(set.size()).isEqualTo(10000);
     }
 }
