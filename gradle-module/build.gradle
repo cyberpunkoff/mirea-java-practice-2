@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.mirea.edu'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': "ru.mirea.edu.Main"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task copyJar(type: Copy) {
+    from jar // here it automatically reads jar file produced from jar task
+    into 'docker'
+}
+
+task deploy(type: Exec) {
+    workingDir "${projectDir}/docker"
+    commandLine './deploy.sh'
+}
+
+copyJar.dependsOn jar
+deploy.dependsOn copyJar
