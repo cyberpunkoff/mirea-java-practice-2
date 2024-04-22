@@ -2,11 +2,15 @@ package ru.mirea.edu.practice15.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Market {
     @Id
     private String name;
     private String address;
+    @OneToMany(mappedBy = "market")
+    private Set<Product> products;
 
     public String getName() {
         return name;

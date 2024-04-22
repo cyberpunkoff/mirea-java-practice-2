@@ -29,6 +29,7 @@ public class HikariConfiguration {
         sessionFactoryBean.setPackagesToScan("ru.mirea.edu.practice15.model");
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create");
         sessionFactoryBean.setHibernateProperties(properties);
         return sessionFactoryBean;
     }
