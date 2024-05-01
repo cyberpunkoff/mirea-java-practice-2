@@ -8,7 +8,7 @@ import org.springframework.transaction.*;
 import javax.sql.*;
 import java.util.*;
 
-@Configuration
+//@Configuration
 public class HikariConfiguration {
     @Bean
     public HikariDataSource dataSource() {
