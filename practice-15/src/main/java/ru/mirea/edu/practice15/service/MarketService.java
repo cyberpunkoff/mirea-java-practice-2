@@ -42,4 +42,6 @@ public class MarketService {
         session.createQuery("delete from Market u where u.name = :name", Market.class)
                 .setParameter("name", name);
     }
+
+
 }
