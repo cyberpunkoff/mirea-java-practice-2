@@ -3,9 +3,11 @@ package ru.mirea.edu.practice15;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
+@EnableScheduling
 public class Practice15Application {
 
 	public static void main(String[] args) {

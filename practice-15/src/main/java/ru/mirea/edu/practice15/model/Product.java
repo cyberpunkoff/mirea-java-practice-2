@@ -33,4 +33,13 @@ public class Product {
     public void setMarket(Market market) {
         this.market = market;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", market=" + market +
+                '}';
+    }
 }
