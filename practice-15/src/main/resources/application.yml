@@ -3,3 +3,18 @@ spring:
     url: jdbc:postgresql://localhost:5432/practice15
     username: postgres
     password: postgres
+
+  mail:
+    host: smtp.mail.ru
+    port: 465
+    username: ${SMTP_LOGIN}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+          starttls:
+            required: true
+            enable: true
