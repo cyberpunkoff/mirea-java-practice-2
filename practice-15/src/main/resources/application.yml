@@ -4,6 +4,10 @@ spring:
     username: postgres
     password: postgres
 
+  session:
+    jdbc:
+      initialize-schema: always
+
   mail:
     host: smtp.mail.ru
     port: 465
