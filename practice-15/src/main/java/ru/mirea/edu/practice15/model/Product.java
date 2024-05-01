@@ -7,6 +7,8 @@ public class Product {
     @Id
     private String name;
     private int price;
+    @ManyToOne
+    private Market market;
 
     public String getName() {
         return name;
@@ -22,5 +24,13 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Market getMarket() {
+        return market;
+    }
+
+    public void setMarket(Market market) {
+        this.market = market;
     }
 }
