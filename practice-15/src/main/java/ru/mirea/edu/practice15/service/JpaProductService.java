@@ -2,6 +2,7 @@ package ru.mirea.edu.practice15.service;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mirea.edu.practice15.model.Product;
 import ru.mirea.edu.practice15.repository.ProductRepository;
 
@@ -9,11 +10,14 @@ import java.util.List;
 
 @Service
 @Primary
+@Transactional
 public class JpaProductService implements ProductService {
     private final ProductRepository productRepository;
+    private final EmailService emailService;
 
-    public JpaProductService(ProductRepository productRepository) {
+    public JpaProductService(ProductRepository productRepository, EmailService emailService) {
         this.productRepository = productRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -28,6 +32,7 @@ public class JpaProductService implements ProductService {
 
     @Override
     public String addProduct(Product product) {
+        emailService.sendLogMail("Add new product");
         return productRepository.save(product).getName();
     }
 
